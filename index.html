@@ -1,0 +1,135 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>ILY ELL</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <style type="text/css">
+        @font-face {
+            font-family: digit;
+            src: url('digital.ttf') format("truetype");
+        }
+        /* Hide audio controls to keep the page clean, but allow user interaction if needed */
+        #backgroundMusic {
+            display: none;
+        }
+    </style>
+    <link href="css/default.css" type="text/css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
+            onerror="console.error('jQuery failed to load')"></script>
+    <script type="text/javascript" src="js/garden.js"></script>
+    <script type="text/javascript" src="js/functions.js"></script>
+</head>
+<body>
+<div id="mainDiv">
+    <div id="content">
+        <div id="code">
+            <span class="comments">for : Ell</span><br/>
+            <span class="comments">Alooo Ell</span><br/>
+            <span class="comments"> akuuu mauu jagain kamu dari apapun yang buat kamu sakit.</span><br/>
+            <span class="comments">akuuu sayangg sama kamu el, akuuu mauu jadi apapun yang kamu butuhin dan selalu ada buat kamu. </span><br/>
+            (<span class="string">"Seila Ananda Adira"</span>);<br/>
+            <span class="comments"> 21-05-2025, Hari ini akuuu mauu kamu untuk jadi pasangan hidupku </span><br/>
+            i.meet(u)<br/>
+            <span class="comments"> akuuu mauu kita tumbuh bareng </span><br/>
+            i.confess(u)<br/>
+            <span class="comments">akuu mauu kita saling terbuka</span><br/>
+            u.accepted(i)<br/>
+            <span class="comments">akuuu mauu kita bangun istana bahagia kita.</span><br/>
+            happy(u, i)<br/>
+            <span class="comments">Do u want to be my girlfriend? we will be the happiest couple in the world..</span><br/>
+            <span class="comments"> I love you so much el.</span><br/>
+        </div>
+        <div id="loveHeart">
+            <canvas id="garden" aria-label="Animated heart for love confession"></canvas>
+            <div id="words">
+                <div id="messages">
+                    Seila, I have fallen in love with you for
+                    <div id="elapseClock"></div>
+                </div>
+                <div id="loveu">
+                    Love u forever and ever.<br/>
+                    <div class="signature">- Rohman</div>
+                    <button id="sendLove" style="margin-top: 20px; padding: 10px 20px; background: #ff4d4d; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                        Jawab disinii
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="copyright">
+        Copyright © <script>document.write(new Date().getFullYear())</script> <a href='https://jstmann.github.io'>jstmann.github.io</a>
+    </div>
+    <!-- Audio element for background music -->
+    <audio id="backgroundMusic" autoplay loop>
+        <source src="audio/my-heart.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+</div>
+<script type="text/javascript">
+    var offsetX = $("#loveHeart").width() / 2;
+    var offsetY = $("#loveHeart").height() / 2 - 55;
+    var together = new Date();
+    together.setFullYear(2025, 4, 21); // May 21, 2025
+    together.setHours(15);
+    together.setMinutes(0);
+    together.setSeconds(0);
+    together.setMilliseconds(0);
+
+    // WhatsApp integration
+    $(document).ready(function() {
+        const phoneNumber = "6285718993124";
+        const message = "Alooo Ell, akuuu sayangg banget sama kamuuu. Mau jadi pasangan hidupku? Chat Rohman disini.";
+        const whatsappLink = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+
+        $("#sendLove").click(function() {
+            window.open(whatsappLink, "_blank");
+            // Ensure audio plays after user interaction (bypasses autoplay restrictions)
+            document.getElementById("backgroundMusic").play().catch(function(error) {
+                console.error("Autoplay prevented:", error);
+            });
+        });
+
+        // Softer prompt for WhatsApp message
+        setTimeout(function() {
+            if (confirm("Ell, mau balas perasaanku? Aku tunggu di WhatsApp ya, cantik!")) {
+                window.open(whatsappLink, "_blank");
+                // Play audio after user confirms
+                document.getElementById("backgroundMusic").play().catch(function(error) {
+                    console.error("Autoplay prevented:", error);
+                });
+            }
+        }, 10000);
+    });
+
+    if (!document.createElement('canvas').getContext) {
+        var msg = document.createElement("div");
+        msg.id = "errorMsg";
+        msg.innerHTML = "Your browser doesn't support HTML5!<br/>Recommend use Chrome 14+/IE 9+/Firefox 7+/Safari 4+";
+        document.body.appendChild(msg);
+        $("#code").css("display", "none");
+        $("#copyright").css("position", "absolute");
+        $("#copyright").css("bottom", "10px");
+        document.execCommand("stop");
+    } else {
+        setTimeout(function () {
+            startHeartAnimation();
+        }, 5000);
+
+        timeElapse(together);
+        setInterval(function () {
+            timeElapse(together);
+        }, 500);
+
+        adjustCodePosition();
+        $("#code").typewriter();
+
+        // Recalculate offsets on window resize
+        $(window).resize(function() {
+            offsetX = $("#loveHeart").width() / 2;
+            offsetY = $("#loveHeart").height() / 2 - 55;
+        });
+    }
+</script>
+</body>
+</html>
